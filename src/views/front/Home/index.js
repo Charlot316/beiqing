@@ -35,6 +35,7 @@ class Scene extends Component {
   getImages(page) {
     getImageList({ page: page }).then((result) => {
       this.setState({ imageList: result.data.list });
+      console.log("get");
     });
   }
 

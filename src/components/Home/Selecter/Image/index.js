@@ -26,20 +26,29 @@ import styles from "./index.module.styl";
 const { Search } = Input;
 class Selecter extends Component {
   state = {};
-  list = {};
+  image = {};
   constructor(props) {
     super();
-    this.list = props.list;
+    this.image = props.image;
   }
   componentDidMount() {
-    this.setState({ list: this.list });
+    this.setState({ image: this.image });
+  }
+  static getDerivedStateFromProps(nextProps, preState) {
+    const oldData = JSON.stringify(preState);
+    const newData = JSON.stringify(nextProps);
+    console.log();
+    if (oldData !== newData) {
+      return nextProps;
+    }
+    return null;
   }
 
   render() {
     return (
-      <div className={styles.selecterBody}>
-        <div></div>
-        <div></div>
+      <div className={styles.imageBody}>
+        <img className={styles.imageImg} src={this.state.image.img} />
+        <div className={styles.imageName}>{this.state.image.name}</div>
       </div>
     );
   }

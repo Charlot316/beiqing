@@ -11,7 +11,7 @@ async function getImageList(param) {
     let res = { data: {} };
     if (param.page == 1) {
       res.data = {
-        records: [
+        list: [
           {
             name: "故宫",
             img: require("@/assets/01gg.jpg"),
@@ -58,7 +58,7 @@ async function getImageList(param) {
     }
     if (param.page == 2) {
       res.data = {
-        records: [
+        list: [
           {
             name: "拙政园",
             img: require("@/assets/11zzy.jpg"),
