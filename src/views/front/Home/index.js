@@ -43,9 +43,8 @@ class Scene extends Component {
             yaw={180}
             hfov={110}
             autoLoad
-            onLoad={() => {
-              console.log("panorama loaded");
-            }}
+            showZoomCtrl={false}
+            showFullscreenCtrl={false}
           ></Pannellum>
         </div>
       </div>

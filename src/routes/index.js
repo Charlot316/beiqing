@@ -2,16 +2,11 @@ import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import NoMatch from "../components/Layout/404";
 import LazyComponent from "./LazyComponent";
-import { setMenuValue } from "../consts/menus";
 // 不带左侧栏的路由页面
 const RoutesData = [
   {
     path: "/",
     redirect: "/home",
-  },
-  {
-    path: "/app",
-    component: () => import("components/Layout/BaseLayout"),
   },
   //登录页面
   {
