@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "lib": ["dom", "dom.iterable", "scripthost", "es2015", "es2017", "es5", "es6"],
+    "module": "esnext",
+    "target": "es6",
+    "moduleResolution": "node",
+    "allowJs": false,
+    "pretty": true,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "types": ["webpack", "webpack-env"],
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin"
+      }
+    ]
+  },
+  "semicolon": [true, "always", "ignore-interfaces"],
+  "rules": {
+    "quotemark": [true, "single", "avoid-escape"]
+  },
+  "include": ["src"],
+  "typeRoots": ["node_modules/@types"],
+  "exclude": ["node_modules"]
+}
