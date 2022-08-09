@@ -21,6 +21,13 @@ import Selecter from "@/components/Home/Selecter";
 import styles from "./index.module.styl";
 import Banner from "@/components/Home/Body/Banner";
 import Controller from "@/components/Home/Body/Controller";
+import { MODAL_STATUS, MODAL_TYPE } from "@/consts/views/modal";
+
+import ScenicSpotIntroduction from "@/components/Home/Modals/ContentInnovation";
+import ScenicSpotGuide from "@/components/Home/Modals/ContentInnovation";
+import EnglishTourGuide from "@/components/Home/Modals/ContentInnovation";
+import ContentInnovation from "@/components/Home/Modals/ContentInnovation";
+import PersonalGrade from "@/components/Home/Modals/ContentInnovation";
 
 import { Pannellum } from "pannellum-react";
 import {
@@ -34,12 +41,52 @@ class Scene extends Component {
     background: "",
     imageList: [],
     bannerList: [],
+    Modals: [
+      {
+        name: "景区介绍",
+        status: MODAL_STATUS.CLOSE,
+        type: MODAL_TYPE.SCENIC_SPOT_INTRODUCTION,
+        content: <ScenicSpotIntroduction />,
+      },
+      {
+        name: "导游讲解",
+        status: MODAL_STATUS.CLOSE,
+        type: MODAL_TYPE.SCENIC_SPOT_GUIDE,
+        content: <ScenicSpotGuide />,
+      },
+      {
+        name: "英语导游学习",
+        status: MODAL_STATUS.CLOSE,
+        type: MODAL_TYPE.ENGLISH_TOUR_GUIDE,
+        content: <EnglishTourGuide />,
+      },
+      {
+        name: "内容创新",
+        status: MODAL_STATUS.CLOSE,
+        type: MODAL_TYPE.CONTENT_INNOVATION,
+        content: <ContentInnovation />,
+      },
+      {
+        name: "个人成绩",
+        status: MODAL_STATUS.CLOSE,
+        type: MODAL_TYPE.PERSONAL_GRADE,
+        content: <PersonalGrade />,
+      },
+    ], //控制五个弹窗的状态
   };
+
+  changeModalStatus(modal, status) {
+    this.setState((state) => {
+      state.Modals[modal].status = status;
+    });
+  }
+
   componentDidMount() {
     this.getImages(1);
     this.getBackground();
     this.getBanner();
   }
+
   getImages(page) {
     getImageList({ page: page }).then((result) => {
       this.setState({ imageList: result.data.list });
@@ -91,6 +138,7 @@ class Scene extends Component {
             <Controller />
           </div>
         </div>
+        <Modal></Modal>
       </div>
     );
   }
