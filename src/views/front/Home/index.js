@@ -16,12 +16,12 @@ import {
   Card,
 } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+
 import Header from "@/components/Home/Header";
 import Selecter from "@/components/Home/Selecter";
 import styles from "./index.module.styl";
 import Banner from "@/components/Home/Body/Banner";
 import Controller from "@/components/Home/Body/Controller";
-import { MODAL_STATUS, MODAL_TYPE } from "@/consts/views/modal";
 
 import ScenicSpotIntroduction from "@/components/Home/Modals/ContentInnovation";
 import ScenicSpotGuide from "@/components/Home/Modals/ContentInnovation";
@@ -29,6 +29,7 @@ import EnglishTourGuide from "@/components/Home/Modals/ContentInnovation";
 import ContentInnovation from "@/components/Home/Modals/ContentInnovation";
 import PersonalGrade from "@/components/Home/Modals/ContentInnovation";
 
+import { MODAL_STATUS, MODAL_TYPE } from "@/consts/views/modal";
 import { Pannellum } from "pannellum-react";
 import {
   getImageList,
@@ -46,40 +47,46 @@ class Scene extends Component {
         name: "景区介绍",
         status: MODAL_STATUS.CLOSE,
         type: MODAL_TYPE.SCENIC_SPOT_INTRODUCTION,
-        content: <ScenicSpotIntroduction />,
+        content: (
+          <ScenicSpotIntroduction changeModalStatus={this.changeModalStatus} />
+        ),
       },
       {
         name: "导游讲解",
         status: MODAL_STATUS.CLOSE,
         type: MODAL_TYPE.SCENIC_SPOT_GUIDE,
-        content: <ScenicSpotGuide />,
+        content: <ScenicSpotGuide changeModalStatus={this.changeModalStatus} />,
       },
       {
         name: "英语导游学习",
         status: MODAL_STATUS.CLOSE,
         type: MODAL_TYPE.ENGLISH_TOUR_GUIDE,
-        content: <EnglishTourGuide />,
+        content: (
+          <EnglishTourGuide changeModalStatus={this.changeModalStatus} />
+        ),
       },
       {
         name: "内容创新",
         status: MODAL_STATUS.CLOSE,
         type: MODAL_TYPE.CONTENT_INNOVATION,
-        content: <ContentInnovation />,
+        content: (
+          <ContentInnovation changeModalStatus={this.changeModalStatus} />
+        ),
       },
       {
         name: "个人成绩",
         status: MODAL_STATUS.CLOSE,
         type: MODAL_TYPE.PERSONAL_GRADE,
-        content: <PersonalGrade />,
+        content: <PersonalGrade changeModalStatus={this.changeModalStatus} />,
       },
     ], //控制五个弹窗的状态
   };
 
-  changeModalStatus(modal, status) {
-    this.setState((state) => {
-      state.Modals[modal].status = status;
-    });
-  }
+  changeModalStatus = (modal, status) => {
+    let that = this;
+    this.state.Modals[modal].status = status;
+    this.forceUpdate();
+  };
 
   componentDidMount() {
     this.getImages(1);
@@ -135,10 +142,24 @@ class Scene extends Component {
           </div>
           <div className={styles.controller}>
             {" "}
-            <Controller />
+            <Controller changeModalStatus={this.changeModalStatus} />
           </div>
         </div>
-        <Modal></Modal>
+        {this.state.Modals.map((modal) => {
+          return (
+            <Modal
+              key={modal.name}
+              title={modal.name}
+              visible={modal.status == MODAL_STATUS.OPEN}
+              footer={null}
+              onCancel={() => {
+                this.changeModalStatus(modal.type, MODAL_STATUS.CLOSE);
+              }}
+            >
+              {modal.content}
+            </Modal>
+          );
+        })}
       </div>
     );
   }

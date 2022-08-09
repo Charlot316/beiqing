@@ -23,6 +23,7 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 import styles from "./index.module.styl";
+
 const { Search } = Input;
 class Header extends Component {
   state = {};
