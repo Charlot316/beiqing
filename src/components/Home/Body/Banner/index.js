@@ -23,10 +23,8 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 import styles from "./index.module.styl";
-import Image from "./Image";
 const { Search } = Input;
-
-class Selecter extends Component {
+class Body extends Component {
   state = {};
   list = [{}];
   constructor(props) {
@@ -43,17 +41,16 @@ class Selecter extends Component {
     return null;
   }
 
+  componentDidMount() {}
+
   render() {
     return (
-      <div className={styles.selecterBody}>
-        <div className={styles.imageList}>
-          {this.state.list?.map((image) => {
-            return <Image image={image} key={image.name} />;
-          })}{" "}
-        </div>
-        <div className={styles.switchButtons}></div>
+      <div className={styles.bannerBody}>
+        {this.state.list?.map((item) => {
+          return <a key={item.name}>{item.name}</a>;
+        })}
       </div>
     );
   }
 }
-export default Selecter;
+export default Body;

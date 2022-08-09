@@ -19,18 +19,26 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import Header from "@/components/Home/Header";
 import Selecter from "@/components/Home/Selecter";
 import styles from "./index.module.styl";
+import Banner from "@/components/Home/Body/Banner";
+import Controller from "@/components/Home/Body/Controller";
 
 import { Pannellum } from "pannellum-react";
-import { getImageList, getBackgroundImage } from "@/services/home";
+import {
+  getImageList,
+  getBackgroundImage,
+  getBannerWords,
+} from "@/services/home";
 const { Search } = Input;
 class Scene extends Component {
   state = {
     background: "",
     imageList: [],
+    bannerList: [],
   };
   componentDidMount() {
     this.getImages(1);
     this.getBackground();
+    this.getBanner();
   }
   getImages(page) {
     getImageList({ page: page }).then((result) => {
@@ -45,6 +53,12 @@ class Scene extends Component {
     });
   }
 
+  getBanner() {
+    getBannerWords().then((result) => {
+      this.setState({ bannerList: result.data.list });
+    });
+  }
+
   render() {
     return (
       <div className={styles.homeBody}>
@@ -55,6 +69,7 @@ class Scene extends Component {
           <Selecter list={this.state.imageList} />
         </div>
         <div className={styles.homeContent}>
+          {/* 全景图组件 */}
           <Pannellum
             style={{ position: "absolute", top: "0", left: "0" }}
             width="100%"
@@ -67,6 +82,14 @@ class Scene extends Component {
             showZoomCtrl={false}
             showFullscreenCtrl={false}
           ></Pannellum>
+          <div className={styles.banner}>
+            {" "}
+            <Banner list={this.state.bannerList} />
+          </div>
+          <div className={styles.controller}>
+            {" "}
+            <Controller />
+          </div>
         </div>
       </div>
     );

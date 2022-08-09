@@ -120,4 +120,34 @@ async function getBackgroundImage() {
   });
   return res;
 }
-export { getImageList, getBackgroundImage };
+
+/**
+ * 获取条纹上的白字
+ * @returns 白字列表
+ */
+async function getBannerWords() {
+  const res = await new Promise((resolve) => {
+    let res = { data: {} };
+
+    res.data.list = [
+      {
+        name: "太和门",
+      },
+      {
+        name: "太和殿",
+      },
+      {
+        name: "中和殿",
+      },
+      {
+        name: "保和殿",
+      },
+      {
+        name: "乾清宫",
+      },
+    ];
+    resolve(res);
+  });
+  return res;
+}
+export { getImageList, getBackgroundImage, getBannerWords };
