@@ -23,7 +23,7 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 import styles from "./index.module.styl";
-
+import { MODAL_STATUS, MODAL_TYPE } from "@/consts/views/modal";
 const { Search } = Input;
 class Header extends Component {
   state = {};
@@ -34,7 +34,16 @@ class Header extends Component {
       <div className={styles.headerBody}>
         <div className={styles.left}>出入境三维实景实训平台</div>
         <div className={styles.right}>
-          <Button type="text" icon={<UserOutlined />}>
+          <Button
+            onClick={() => {
+              this.props.changeModalStatus(
+                MODAL_TYPE.PERSONAL_GRADE,
+                MODAL_STATUS.OPEN
+              );
+            }}
+            type="text"
+            icon={<UserOutlined />}
+          >
             个人成绩
           </Button>
           <Button type="text" icon={<SettingOutlined />}>

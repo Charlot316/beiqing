@@ -1,0 +1,6 @@
+.swiper {
+    --swiper-navigation-color: white;
+    /* 单独设置按钮颜色 */
+    --swiper-navigation-size: 40px;
+    /* 设置按钮大小 */
+}

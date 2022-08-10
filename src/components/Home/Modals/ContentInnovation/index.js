@@ -68,15 +68,15 @@ class ContentInnovation extends Component {
       if (recorder !== null) {
         recorder.destroy();
         recorder = null;
-      } else {
-        if (type == "Chinese") {
-          ChineseRecorder = new Recorder();
-          recorder = ChineseRecorder;
-        } else {
-          EnglishRecorder = new Recorder();
-          recorder = EnglishRecorder;
-        }
       }
+      if (type == "Chinese") {
+        ChineseRecorder = new Recorder();
+        recorder = ChineseRecorder;
+      } else {
+        EnglishRecorder = new Recorder();
+        recorder = EnglishRecorder;
+      }
+
       recorder.start();
       this.state[type]["recording"] = true;
       this.state[type]["recordFinished"] = false;
@@ -125,7 +125,7 @@ class ContentInnovation extends Component {
                 type={this.state.Chinese.recording ? "dashed" : "primary"}
                 onClick={() => this.recordButton("Chinese")}
               >
-                {this.state.Chinese.recording ? "停止录音" : "录音练习"}
+                {this.state.Chinese.recording ? "停止录音" : "开始录音"}
               </Button>
               {this.state.Chinese.recordFinished ? (
                 <Button
@@ -153,7 +153,7 @@ class ContentInnovation extends Component {
                 type={this.state.English.recording ? "dashed" : "primary"}
                 onClick={() => this.recordButton("English")}
               >
-                {this.state.English.recording ? "停止录音" : "录音练习"}
+                {this.state.English.recording ? "停止录音" : "开始录音"}
               </Button>
               {this.state.English.recordFinished ? (
                 <Button

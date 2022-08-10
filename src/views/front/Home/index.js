@@ -94,8 +94,8 @@ class Scene extends Component {
     this.getBanner();
   }
 
-  getImages(page) {
-    getImageList({ page: page }).then((result) => {
+  getImages() {
+    getImageList().then((result) => {
       this.setState({ imageList: result.data.list });
     });
   }
@@ -116,7 +116,7 @@ class Scene extends Component {
     return (
       <div className={styles.homeBody}>
         <div className={styles.homeHeader}>
-          <Header />
+          <Header changeModalStatus={this.changeModalStatus} />
         </div>
         <div className={styles.homeSelecter}>
           <Selecter list={this.state.imageList} />
