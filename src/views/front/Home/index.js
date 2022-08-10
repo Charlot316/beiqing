@@ -147,6 +147,8 @@ class Scene extends Component {
         {this.state.Modals.map((modal) => {
           return (
             <Modal
+              style={{ top: 40 }}
+              width="80%"
               key={modal.name}
               title={modal.name}
               visible={modal.status == MODAL_STATUS.OPEN}

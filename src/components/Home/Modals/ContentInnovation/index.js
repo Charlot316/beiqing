@@ -109,8 +109,8 @@ class ContentInnovation extends Component {
           name="内容创新"
           ref={this.formRef}
           key="内容创新"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 20 }}
         >
           <Form.Item
             label="中文导游内容"
@@ -120,7 +120,7 @@ class ContentInnovation extends Component {
             <Input.TextArea />
           </Form.Item>
           <Form.Item label="中文录音内容" name="ChineseAudio">
-            <div className={styles.buttonContainer}>
+            <div className={styles.formButtonContainer}>
               <Button
                 type={this.state.Chinese.recording ? "dashed" : "primary"}
                 onClick={() => this.recordButton("Chinese")}
@@ -148,7 +148,7 @@ class ContentInnovation extends Component {
             <Input.TextArea />
           </Form.Item>
           <Form.Item label="英文录音内容" name="EnglishAudio">
-            <div className={styles.buttonContainer}>
+            <div className={styles.formButtonContainer}>
               <Button
                 type={this.state.English.recording ? "dashed" : "primary"}
                 onClick={() => this.recordButton("English")}
