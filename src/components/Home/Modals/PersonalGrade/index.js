@@ -136,7 +136,15 @@ class Header extends Component {
                 this.changeTable();
               }}
             >
-              景区成绩-景点成绩
+              <span
+                onClick={() => {
+                  this.changeTable();
+                }}
+                className={styles.returnButton}
+              >
+                景区成绩
+              </span>{" "}
+              - 景点成绩
             </div>
             <div>
               {" "}
