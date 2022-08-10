@@ -23,11 +23,11 @@ import styles from "./index.module.styl";
 import Banner from "@/components/Home/Body/Banner";
 import Controller from "@/components/Home/Body/Controller";
 
-import ScenicSpotIntroduction from "@/components/Home/Modals/ContentInnovation";
-import ScenicSpotGuide from "@/components/Home/Modals/ContentInnovation";
-import EnglishTourGuide from "@/components/Home/Modals/ContentInnovation";
+import ScenicSpotIntroduction from "@/components/Home/Modals/ScenicSpotIntroduction";
+import ScenicSpotGuide from "@/components/Home/Modals/ScenicSpotGuide";
+import EnglishTourGuide from "@/components/Home/Modals/EnglishTourGuide";
 import ContentInnovation from "@/components/Home/Modals/ContentInnovation";
-import PersonalGrade from "@/components/Home/Modals/ContentInnovation";
+import PersonalGrade from "@/components/Home/Modals/PersonalGrade";
 
 import { MODAL_STATUS, MODAL_TYPE } from "@/consts/views/modal";
 import { Pannellum } from "pannellum-react";
@@ -97,7 +97,6 @@ class Scene extends Component {
   getImages(page) {
     getImageList({ page: page }).then((result) => {
       this.setState({ imageList: result.data.list });
-      console.log("get");
     });
   }
 
