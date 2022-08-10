@@ -144,6 +144,7 @@ class Scene extends Component {
             <Controller changeModalStatus={this.changeModalStatus} />
           </div>
         </div>
+        {/* 5个弹窗 */}
         {this.state.Modals.map((modal) => {
           return (
             <Modal
