@@ -35,7 +35,7 @@ import {
   getImageList,
   getBackgroundImage,
   getBannerWords,
-} from "@/services/home";
+} from "@/services/front/home";
 const { Search } = Input;
 class Scene extends Component {
   state = {

@@ -28,7 +28,7 @@ import {
   getEnglishIntroduction,
   uploadEnglishPractice,
   uploadContentInnovation,
-} from "@/services/controller";
+} from "@/services/front/controller";
 import styles from "./index.module.styl";
 const { Search } = Input;
 //此为弹窗1

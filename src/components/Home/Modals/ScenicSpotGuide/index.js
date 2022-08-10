@@ -29,7 +29,7 @@ import {
   getEnglishIntroduction,
   uploadEnglishPractice,
   uploadContentInnovation,
-} from "@/services/controller";
+} from "@/services/front/controller";
 import styles from "./index.module.styl";
 const { Search } = Input;
 //此为弹窗2
@@ -45,14 +45,21 @@ class ScenicSpotGuide extends Component {
       this.audio = new Audio(result.data.audio);
     });
   }
-  audioReady() {
-    this.setState({
-      audio: document.getElementById("audioOfScenicSpotGuide"),
-    });
-    this.forceUpdate();
+
+  changeAudioStatus() {
+    if (this.state.playing) {
+      this.audio?.pause();
+      this.setState({ playing: false });
+    } else {
+      try {
+        this.audio?.play();
+      } catch (error) {
+        message.error("音频无法播放");
+      }
+      this.setState({ playing: true });
+    }
   }
 
-  changeAudioStatus() {}
   render() {
     return (
       <div style={{ displayContent: "center" }}>
@@ -61,15 +68,7 @@ class ScenicSpotGuide extends Component {
         <div className={styles.buttonContainer}>
           <Button
             type={this.state.playing ? "dashed" : "primary"}
-            onClick={() => {
-              if (this.state.playing) {
-                this.audio?.pause();
-                this.setState({ playing: false });
-              } else {
-                this.audio?.play();
-                this.setState({ playing: true });
-              }
-            }}
+            onClick={() => this.changeAudioStatus()}
           >
             {this.state.playing ? "暂停" : "语音讲解"}
           </Button>

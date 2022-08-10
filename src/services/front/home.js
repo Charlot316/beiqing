@@ -1,6 +1,6 @@
 import _ from "lodash";
-import request from "../utils/request";
-import { API_BASEURL } from "../consts/env";
+import request from "../../utils/request";
+import { API_BASEURL } from "../../consts/env";
 
 /**
  * 图像列表

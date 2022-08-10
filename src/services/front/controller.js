@@ -1,6 +1,6 @@
 import _ from "lodash";
-import request from "../utils/request";
-import { API_BASEURL } from "../consts/env";
+import request from "../../utils/request";
+import { API_BASEURL } from "../../consts/env";
 
 /**
  * 景区介绍界面获取文字介绍
@@ -40,11 +40,16 @@ async function getIntroductionWithAudio() {
 
 /**
  * 英语导游练习获取文字介绍
- * @returns 带语音的文字介绍
+ * @returns 英语的文字介绍
  */
-async function getEnglishIntroduction(param) {
+async function getEnglishIntroduction() {
   const res = await new Promise((resolve) => {
-    let res = { data: {} };
+    let res = {
+      data: {
+        content:
+          '<p>Taihe Gate, located in the Forbidden City, Dongcheng District, Beijing, on the Middle Outer Road, is the main gate of the Outer Dynasty Palace in the Forbidden City.  was renamed Taihemen; it was burnt down in the 14th year of Guangxu in the Qing Dynasty (1888); it was rebuilt in the 15th year of Guangxu in the Qing Dynasty (1889).</p><p>The Taihe facade is 9 rooms wide, 4 rooms deep, and has a construction area of 1,300 square meters. It is covered with double eaves on the top of the mountain, and the bottom is a white marble base. Liang Fang and other components are painted with Hexi color painting. It is the largest palace gate in the Forbidden City in Beijing. In the Ming Dynasty, Taihe Gate was the place where "the imperial gate listened to the government", where the emperor accepted the adoration and memorials of his ministers, issued edicts, and dealt with political affairs.</p><p>Taihe has 9 rooms wide and 4 rooms deep, with a construction area of 1,300 square meters. The top is covered with double eaves and the top of the mountain, and the bottom is a white marble base. Liang Fang and other components are painted with Hexi colors. In front of the door is a pair of bronze lions and four bronze tripods, which are display bronzes cast in the Ming Dynasty.</p>',
+      },
+    };
     resolve(res);
   });
   return res;
@@ -56,7 +61,13 @@ async function getEnglishIntroduction(param) {
  */
 async function uploadEnglishPractice(param) {
   const res = await new Promise((resolve) => {
-    let res = { data: {} };
+    let res = {
+      data: {
+        content:
+          '<p><span style="color: green">Taihe Gate, located in the Forbidden City, Dongcheng District, Beijing, on the Middle Outer Road, is the main gate of the Outer Dynasty Palace in the Forbidden City.</span> was renamed Taihemen; <span style="color: red">it was burnt down in the 14th year of Guangxu in the Qing Dynasty(1888);</span>it was rebuilt in the 15th year of Guangxu in the Qing Dynasty (1889).</p><p><span style="color: gold">The Taihe facade is 9 rooms wide, 4 rooms deep, and has a construction area of 1,300 square meters.</span> It is covered with double eaves on the top of the mountain, and the bottom is a white marble base. <span style="color: orange"> Liang Fang and other components are painted with Hexi color painting. It is the largest palace gate in the Forbidden City in Beijing.</span><span style="color: green">In the Ming Dynasty, Taihe Gate was the place where "the imperial gate listened to the government", where the emperor accepted the adoration and memorials of his ministers, issued edicts, and dealt with political affairs.</span></p><p><span style="color: green">Taihe has 9 rooms wide and 4 rooms deep, with a construction area of 1,300square meters. The top is covered with double eaves and the top of themountain, and the bottom is a white marble base. </span><span style="color: orange">Liang Fang and other components are painted with Hexi colors. In front of the door is a pair of bronze lions and four bronze tripods, which are display bronzes cast in the Ming Dynasty.</span></p>',
+        grade: 80,
+      },
+    };
     resolve(res);
   });
   return res;
