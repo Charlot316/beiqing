@@ -16,7 +16,8 @@ import {
   Card,
 } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-
+import MyForm from "./Form";
+import MyList from "./List";
 import styles from "./index.module.styl";
 
 const { Search } = Input;
@@ -25,16 +26,33 @@ const STATUS = {
   EDIT: 2,
   ADD: 3,
 };
-class Admin extends Component {
+class ScenicArea extends Component {
   state = {
     status: STATUS.LIST,
   };
+  constructor(props) {
+    super(props);
+    this.changeTable = this.changeTable.bind(this);
+  }
+
+  changeTable(status) {
+    console.log(this);
+    console.log(status);
+    this.setState({ status: status });
+  }
+
   render() {
     return (
       <div className={styles.scenicBody}>
-        <div></div>
+        <div className={styles.scenicContent}>
+          {this.state.status == STATUS.LIST ? (
+            <MyList changeTable={this.changeTable} />
+          ) : (
+            <MyForm changeTable={this.changeTable} />
+          )}
+        </div>
       </div>
     );
   }
 }
-export default Admin;
+export default ScenicArea;

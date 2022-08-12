@@ -25,9 +25,12 @@ import {
 import { getDetailedGrade, getOverallGrade } from "@/services/front/grade";
 import styles from "./index.module.styl";
 const { Search } = Input;
-
+const STATUS = {
+  OVERALL: 1,
+  DETAILED: 2,
+};
 class Header extends Component {
-  state = { record: [], grade: 0, name: "", status: "overall" };
+  state = { record: [], grade: 0, name: "", status: STATUS.OVERALL };
   componentDidMount() {
     this.getOverall();
   }
@@ -98,19 +101,19 @@ class Header extends Component {
   }
 
   changeTable() {
-    if (this.state.status == "overall") {
+    if (this.state.status == STATUS.OVERALL) {
       this.getDetailed();
-      this.setState({ status: "detailed" });
+      this.setState({ status: STATUS.DETAILED });
     } else {
       this.getOverall();
-      this.setState({ status: "overall" });
+      this.setState({ status: STATUS.OVERALL });
     }
   }
 
   render() {
     return (
       <div>
-        {this.state.status == "overall" ? (
+        {this.state.status == STATUS.OVERALL ? (
           <div>
             <div>
               {this.state.name}的个人总成绩：{this.state.grade}
