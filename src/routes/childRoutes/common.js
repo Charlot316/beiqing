@@ -1,9 +1,11 @@
 const Routes = [
-  // {
-  //   path: "/app/admin/system/students",
-  //   name: "学生管理",
-  //   parentPath: "/app/admin/system",
-  //   component: () => import("../../views/Admin/System/Student"),
-  // },
+  {
+    path: "/admin/scenicarea",
+    component: () => import("views/back/ScenicArea"),
+  },
+  {
+    path: "/admin/scenicspot",
+    component: () => import("views/back/ScenicSpot"),
+  },
 ];
 export default Routes;

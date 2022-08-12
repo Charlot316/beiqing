@@ -13,6 +13,11 @@ const RoutesData = [
     path: "/home",
     component: () => import("views/front/Home"),
   },
+
+  {
+    path: "/admin",
+    component: () => import("views/back/Admin"),
+  },
 ];
 
 export default class Routes extends React.Component {
