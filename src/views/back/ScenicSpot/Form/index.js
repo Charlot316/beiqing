@@ -52,13 +52,17 @@ class myForm extends Component {
       <div className={styles.scenicBody}>
         <Row>
           <div style={{ float: "left", marginBottom: "10px" }}>
+            <Link className={styles.returnButton} to="/admin/scenicArea">
+              景区景点管理
+            </Link>{" "}
+            -
             <Link
               onClick={() => {
                 this.props.changeTable(STATUS.LIST);
               }}
               className={styles.returnButton}
             >
-              景区景点管理
+              景点管理
             </Link>{" "}
             - {this.props.status == STATUS.EDIT ? "编辑景区" : "新增景区"}
           </div>
@@ -71,31 +75,24 @@ class myForm extends Component {
             labelCol={{ span: 4 }}
             wrapperCol={{ span: 20 }}
           >
-            <Form.Item label="景区名称" name="name">
+            <Form.Item label="景点名称" name="name">
               <Input
                 defaultValue={
                   this.props.status == STATUS.EDIT
-                    ? this.state.scenicArea?.name
+                    ? this.state.scenicSpot?.name
                     : ""
                 }
               />
             </Form.Item>
-            <Form.Item label="景区介绍" name="introduction">
-              <Input.TextArea
-                defaultValue={
-                  this.props.status == STATUS.EDIT
-                    ? this.state.scenicArea?.introduction
-                    : ""
-                }
-              />
-            </Form.Item>
-            {this.state.scenicArea?.img !== "" &&
+
+            {this.state.scenicSpot?.img !== "" &&
             this.props.status == STATUS.EDIT ? (
-              <Form.Item label="略缩图" name="origin">
+              <Form.Item label="全景图" name="origin">
                 <img
+                  style={{ width: 100, height: 100 }}
                   src={
                     this.props.status == STATUS.EDIT
-                      ? this.state.scenicArea?.img
+                      ? this.state.scenicSpot?.img
                       : ""
                   }
                 />
@@ -104,8 +101,26 @@ class myForm extends Component {
               ""
             )}
 
-            <Form.Item label="上传略缩图" name="img">
+            <Form.Item label="上传全景图" name="img">
               <Upload listType="picture-card">{uploadButton}</Upload>
+            </Form.Item>
+            <Form.Item label="导游内容（中文）" name="ChineseContent">
+              <Input.TextArea
+                defaultValue={
+                  this.props.status == STATUS.EDIT
+                    ? this.state.scenicSpot?.ChineseContent
+                    : ""
+                }
+              />
+            </Form.Item>
+            <Form.Item label="导游内容（英文）" name="EnglishContent">
+              <Input.TextArea
+                defaultValue={
+                  this.props.status == STATUS.EDIT
+                    ? this.state.scenicSpot?.EnglishContent
+                    : ""
+                }
+              />
             </Form.Item>
             <div className={styles.buttonContainer}>
               <Button type="primary">确认提交</Button>

@@ -83,7 +83,6 @@ class Scene extends Component {
   };
 
   changeModalStatus = (modal, status) => {
-    let that = this;
     this.state.Modals[modal].status = status;
     this.forceUpdate();
   };
