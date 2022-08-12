@@ -17,7 +17,12 @@ import {
   Card,
 } from "antd";
 import { Link } from "react-router-dom";
-import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  PlusOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
 
 import styles from "./index.module.styl";
 
@@ -34,13 +39,19 @@ const STATUS = {
   ADD: 3,
 };
 
+let audio = null;
 class myForm extends Component {
   formRef = React.createRef();
-  state = {};
+  state = {
+    playing: false,
+  };
+
+  componentDidMount() {}
   static getDerivedStateFromProps(nextProps, preState) {
     let oldData = JSON.stringify(preState);
     let newData = JSON.stringify(nextProps);
     console.log();
+    if (audio == null) audio = new Audio(nextProps.scenicSpot?.EnglishAudio);
     if (oldData !== newData) {
       return nextProps;
     }
@@ -122,8 +133,30 @@ class myForm extends Component {
                 }
               />
             </Form.Item>
+            <Form.Item label="英文语音" name="audio">
+              <Button
+                type={this.state.playing ? "primary" : "default"}
+                onClick={() => {
+                  if (this.state.playing) {
+                    audio.pause();
+                    this.setState({ playing: false });
+                  } else {
+                    audio.play();
+                    this.setState({ playing: true });
+                  }
+                }}
+              >
+                {this.state.playing ? "点击暂停" : "点击播放音频"}
+              </Button>
+            </Form.Item>
+            <Form.Item label="上传英文语音" name="audio">
+              <Upload>
+                {" "}
+                <Button icon={<UploadOutlined />}>Click to Upload</Button>
+              </Upload>
+            </Form.Item>
             <div className={styles.buttonContainer}>
-              <Button type="primary">确认提交</Button>
+              <Button type="primary">点击以上传</Button>
             </div>
           </Form>
         </div>
